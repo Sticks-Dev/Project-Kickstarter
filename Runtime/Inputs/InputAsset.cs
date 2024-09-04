@@ -112,7 +112,10 @@ namespace Kickstarter.Inputs
                 return;
             var value = context.ReadValue<TType>();
             actionMap.TryGetValue(player, out var listeners);
-            listeners?.ForEach(listener => listener(value));
+            if (listeners == null)
+                return;
+            for (int i = 0; i < listeners.Count; i++)
+                listeners[i](value); // Avoiding foreach to allow deregistration during iteration but when deregistering, the total count is reduced preventing null reference exception
         }
     }
 }

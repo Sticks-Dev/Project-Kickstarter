@@ -46,8 +46,11 @@ namespace Kickstarter.Events
         /// <param name="argument">The information being passed into the event to be received by the listeners.</param>
         public static void Trigger<TArgument>(TArgument argument)
         {
-            listeners.TryGetValue(typeof(TArgument), out var typedListeners);
-            (typedListeners as List<Action<TArgument>>).ForEach(listener => listener(argument));
+            listeners.TryGetValue(typeof(TArgument), out var objectListeners);
+            var typedListeners = objectListeners as List<Action<TArgument>>;
+            if (typedListeners.Count == 0)
+                return;
+            (typedListeners).ForEach(listener => listener(argument));
         }
     }
 }

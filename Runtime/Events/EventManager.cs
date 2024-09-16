@@ -48,7 +48,7 @@ namespace Kickstarter.Events
         {
             listeners.TryGetValue(typeof(TArgument), out var objectListeners);
             var typedListeners = objectListeners as List<Action<TArgument>>;
-            if (typedListeners.Count == 0)
+            if (typedListeners == null)
                 return;
             (typedListeners).ForEach(listener => listener(argument));
         }

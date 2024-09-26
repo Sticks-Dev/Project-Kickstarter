@@ -91,7 +91,8 @@ namespace Kickstarter.Inputs
         private void CreateMaps(IReadOnlyCollection<InputDevice> devices)
         {
             playerDevices = new Dictionary<InputDevice, Player.PlayerIdentifier>();
-            var inputDevices = devices.Where(d => d is not Mouse).ToArray();
+            var inputDevices = devices.Where(d => d is not Mouse && d is not Keyboard).ToArray();
+            playerDevices.Add(Keyboard.current, Player.PlayerIdentifier.Player1);
             for (int i = 0; i < Math.Min(inputDevices.Length, playerIdentifiers.Length); i++)
                 playerDevices.Add(inputDevices[i], playerIdentifiers[i]);
 

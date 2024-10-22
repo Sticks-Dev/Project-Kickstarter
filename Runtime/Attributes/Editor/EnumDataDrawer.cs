@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(EnumData))]
 public class EnumDataDrawer : PropertyDrawer
 {
@@ -41,3 +42,4 @@ public class EnumDataDrawer : PropertyDrawer
         return EditorGUI.GetPropertyHeight(property, label, true);
     }
 }
+#endif

@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 namespace Kickstarter.SerializedTypes
 {
     [CustomPropertyDrawer(typeof(SerializeableType))]
@@ -55,3 +56,4 @@ namespace Kickstarter.SerializedTypes
         }
     }
 }
+#endif

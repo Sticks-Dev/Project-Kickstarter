@@ -42,18 +42,22 @@ namespace Kickstarter.GOAP
 
         }
 
-        public virtual void Initialize(Dictionary<string, AgentBelief> beliefs, Behaviour[] dependencies)
+        public virtual void Initialize(Dictionary<string, AgentBelief> beliefs, MonoBehaviour[] dependencies)
         {
             foreach (var precondition in preconditions)
                 Preconditions.Add(beliefs[precondition]);
             foreach (var effect in effects)
                 Effects.Add(beliefs[effect]);
 
-            InsertDependencies(dependencies);
+            IDependencyFinder[] dependencyFinders = new IDependencyFinder[dependencies.Length];
+            for (int i = 0; i < dependencyFinders.Length; i++)
+                dependencyFinders[i] = dependencies[i] as IDependencyFinder;
+
+            InsertDependencies(dependencyFinders);
             InsertBeliefs(beliefs);
         }
 
-        protected virtual void InsertDependencies(Behaviour[] dependencies)
+        protected virtual void InsertDependencies(IDependencyFinder[] dependencies)
         {
 
         }

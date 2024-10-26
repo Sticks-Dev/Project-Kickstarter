@@ -179,10 +179,10 @@ namespace Kickstarter.GOAP
         {
             [SerializeField] private string actionName;
             [SerializeField] private AgentAction agentAction;
-            [SerializeField] private Behaviour[] agentActionReferences;
+            [SerializeField] private MonoBehaviour[] agentActionReferences;
 
             public AgentAction AgentAction => agentAction;
-            public Behaviour[] AgentActionReferences => agentActionReferences;
+            public MonoBehaviour[] AgentActionReferences => agentActionReferences;
         }
 
         [Serializable]

@@ -17,10 +17,10 @@ namespace Kickstarter.GOAP
         public abstract bool CanPerform();
         public abstract bool IsComplete();
 
-        public void UpdateAction(float deltaTime)
+        public void TickAction(float deltaTime)
         {
             if (CanPerform())
-                UpdateStrategy(deltaTime);
+                UpdateAction(deltaTime);
 
             if (!IsComplete())
                 return;
@@ -33,7 +33,7 @@ namespace Kickstarter.GOAP
         {
 
         }
-        protected virtual void UpdateStrategy(float deltatime)
+        protected virtual void UpdateAction(float deltatime)
         {
 
         }

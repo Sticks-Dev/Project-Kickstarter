@@ -53,7 +53,7 @@ namespace Kickstarter.GOAP
 
             if (actionPlan != null && currentAction != null)
             {
-                currentAction.UpdateAction(Time.deltaTime);
+                currentAction.TickAction(Time.deltaTime);
 
                 if (currentAction.IsComplete())
                 {

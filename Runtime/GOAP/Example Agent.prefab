@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2075539394991250100}
   - component: {fileID: 1048041913777942314}
   - component: {fileID: 3362972677902389070}
-  - component: {fileID: 8848739584654124169}
-  - component: {fileID: 8541609951679813726}
   m_Layer: 0
   m_Name: Example Agent
   m_TagString: Untagged
@@ -72,9 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e179be0d83c0b8743a9eede09f2be700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statBeliefData:
-  - {fileID: 8848739584654124169}
-  - {fileID: 8541609951679813726}
+  statBeliefData: []
   locationBeliefData: []
   sensorBeliefData:
   - name: Cube In Chase Range
@@ -103,34 +99,6 @@ MonoBehaviour:
   - name: Seek and Destroy
     priority: 5
     desiredEffect: Cube In Attack Range
---- !u!114 &8848739584654124169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92773374183858013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3370145469c90244b65366dff1494c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statName: Agent Moving
-  inverted: 0
---- !u!114 &8541609951679813726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92773374183858013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3370145469c90244b65366dff1494c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statName: Agent Idle
-  inverted: 1
 --- !u!1 &4684282922973494073
 GameObject:
   m_ObjectHideFlags: 0

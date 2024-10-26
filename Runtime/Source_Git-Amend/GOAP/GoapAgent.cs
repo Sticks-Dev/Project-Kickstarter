@@ -1,18 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
-using Kickstarter.Extensions;
+using System;
 
 namespace Kickstarter.GOAP
 {
-    [RequireComponent(typeof(NavMeshAgent))]
-    public abstract class GoapAgent : MonoBehaviour
+    public class GoapAgent : MonoBehaviour
     {
-        protected NavMeshAgent navMeshAgent;
-        private Rigidbody body;
-
-        protected CountdownTimer statsTimer;
         private AgentGoal lastGoal;
         private AgentGoal currentGoal;
         private AgentAction currentAction;
@@ -27,16 +21,11 @@ namespace Kickstarter.GOAP
         #region UnityEvents
         private void Awake()
         {
-            navMeshAgent = gameObject.GetOrAdd<NavMeshAgent>();
-            body = gameObject.GetOrAdd<Rigidbody>();
-            body.freezeRotation = true;
-
             gPlanner = new GoapPlanner();
         }
 
         protected virtual void Start()
         {
-            SetupTimers();
             SetupBeliefs();
             SetupActions();
             SetupGoals();
@@ -44,16 +33,12 @@ namespace Kickstarter.GOAP
 
         private void Update()
         {
-            statsTimer.Tick(Time.deltaTime);
-
             if (currentAction == null)
             {
                 CalculatePlan();
 
                 if (actionPlan != null && actionPlan.Actions.Count > 0)
                 {
-                    navMeshAgent.ResetPath();
-
                     currentGoal = actionPlan.AgentGoal;
                     currentAction = actionPlan.Actions.Pop();
                     if (currentAction.Preconditions.All(b => b.Evaluate()))
@@ -68,9 +53,9 @@ namespace Kickstarter.GOAP
 
             if (actionPlan != null && currentAction != null)
             {
-                currentAction.Update(Time.deltaTime);
+                currentAction.UpdateAction(Time.deltaTime);
 
-                if (currentAction.Complete)
+                if (currentAction.IsComplete())
                 {
                     currentAction.Stop();
                     currentAction = null;
@@ -85,29 +70,67 @@ namespace Kickstarter.GOAP
         }
         #endregion
 
-        private void SetupTimers()
+        #region Agent Behaviors
+        [SerializeField] private MonoBehaviour[] statBeliefData;
+        [SerializeField] private LocationBeliefData[] locationBeliefData;
+        [SerializeField] private SensorBeliefData[] sensorBeliefData;
+        [SerializeField] private AgentActionData[] actionData;
+        [SerializeField] private GoalData[] goalData;
+
+        private void SetupBeliefs()
         {
-            statsTimer = new CountdownTimer(2f);
-            statsTimer.OnTimerStop += () =>
+            beliefs = new Dictionary<string, AgentBelief>();
+            var factory = new BeliefFactory(this, beliefs);
+
+            foreach (var belief in statBeliefData)
             {
-                UpdateStats();
-                statsTimer.Start();
-            };
-            statsTimer.Start();
+                if (belief is not IStatBelief statBelief)
+                    throw new Exception($"{belief.name} must implement IStatBelief");
+                factory.AddStatBelief(statBelief.Name, statBelief.Evaluate);
+            }
+
+            foreach (var locationBelief in locationBeliefData)
+                factory.AddLocationBelief(locationBelief.Name, locationBelief.Distance, locationBelief.Location);
+
+            foreach (var belief in sensorBeliefData)
+            {
+                factory.AddSensorBelief(belief.Name, belief.Sensor);
+                belief.Sensor.OnTargetChanged += HandleTargetChange;
+            }
         }
 
-        protected abstract void SetupBeliefs();
-        protected abstract void SetupActions();
-        protected abstract void SetupGoals();
-        protected abstract void UpdateStats();
+        private void SetupActions()
+        {
+            actions = new HashSet<AgentAction>();
 
-        protected void HandleTargetChange()
+            foreach (var action in actionData)
+            {
+                action.AgentAction.Initialize(beliefs, action.AgentActionReferences);
+                actions.Add(action.AgentAction);
+            }
+        }
+
+        private void SetupGoals()
+        {
+            goals = new HashSet<AgentGoal>();
+
+            foreach (var goal in goalData)
+            {
+                goals.Add(new AgentGoal.Builder(goal.Name)
+                    .WithPriority(goal.Priority)
+                    .WithDesiredEffect(beliefs[goal.DesiredEffect])
+                    .Build());
+            }
+        }
+        #endregion
+
+        private void HandleTargetChange()
         {
             currentAction = null;
             currentGoal = null;
         }
 
-        protected bool InRangeOf(Vector3 position, float range)
+        private bool InRangeOf(Vector3 position, float range)
             => Vector3.Distance(transform.position, position) < range;
 
         private void CalculatePlan()
@@ -127,5 +150,52 @@ namespace Kickstarter.GOAP
                 actionPlan = potentialPlan;
             }
         }
+
+        #region Serialized Types
+        [Serializable]
+        private struct LocationBeliefData
+        {
+            [SerializeField] private string name;
+            [SerializeField] private float distance;
+            [SerializeField] private Transform location;
+
+            public string Name => name;
+            public float Distance => distance;
+            public Transform Location => location;
+        }
+        
+        [Serializable]
+        private struct SensorBeliefData
+        {
+            [SerializeField] private string name;
+            [SerializeField] private Sensor sensor;
+
+            public string Name => name;
+            public Sensor Sensor => sensor;
+        }
+
+        [Serializable]
+        private struct AgentActionData
+        {
+            [SerializeField] private string actionName;
+            [SerializeField] private AgentAction agentAction;
+            [SerializeField] private Behaviour[] agentActionReferences;
+
+            public AgentAction AgentAction => agentAction;
+            public Behaviour[] AgentActionReferences => agentActionReferences;
+        }
+
+        [Serializable]
+        private struct GoalData
+        {
+            [SerializeField] private string name;
+            [SerializeField] private float priority;
+            [SerializeField] private string desiredEffect;
+
+            public string Name => name;
+            public float Priority => priority;
+            public string DesiredEffect => desiredEffect;
+        }
+        #endregion
     }
 }

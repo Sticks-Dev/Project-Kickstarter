@@ -15,7 +15,7 @@ namespace Kickstarter.GOAP
             this.beliefs = beliefs;
         }
 
-        public void AddBelief(string key, Func<bool> condition)
+        public void AddStatBelief(string key, Func<bool> condition)
         {
             beliefs.Add(key, new AgentBelief.Builder(key)
                 .WithCondition(condition)

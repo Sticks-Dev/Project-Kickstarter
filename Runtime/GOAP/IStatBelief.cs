@@ -6,5 +6,10 @@ namespace Kickstarter.GOAP
     {
         public string Name { get; }
         public Func<bool> Evaluate { get; }
+
+        public void TickBelief(float deltaTime)
+        {
+
+        }
     }
 }

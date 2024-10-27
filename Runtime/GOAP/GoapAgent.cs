@@ -51,6 +51,8 @@ namespace Kickstarter.GOAP
                 }
             }
 
+            UpdateStats(Time.deltaTime);
+
             if (actionPlan != null && currentAction != null)
             {
                 currentAction.TickAction(Time.deltaTime);
@@ -120,6 +122,15 @@ namespace Kickstarter.GOAP
                     .WithPriority(goal.Priority)
                     .WithDesiredEffect(beliefs[goal.DesiredEffect])
                     .Build());
+            }
+        }
+
+        private void UpdateStats(float deltaTime)
+        {
+            foreach (var belief in statBeliefData)
+            {
+                if (belief is IStatBelief statBelief)
+                    statBelief.TickBelief(deltaTime);
             }
         }
         #endregion

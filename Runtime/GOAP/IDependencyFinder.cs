@@ -2,18 +2,6 @@
 {
     public interface IDependencyFinder
     {
-
-    }
-
-    public interface IDependencyFinder<T> : IDependencyFinder
-    {
-        public T[] GetDependencies()
-        {
-            return default;
-        }
-        public T GetDependency()
-        {
-            return default;
-        }
+        public T GetDependency<T>() where T : class;
     }
 }

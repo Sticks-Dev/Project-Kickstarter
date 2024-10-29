@@ -129,8 +129,8 @@ namespace Kickstarter.GOAP
         {
             foreach (var belief in statBeliefData)
             {
-                if (belief is IStatBelief statBelief)
-                    statBelief.TickBelief(deltaTime);
+                if (belief is IStatUpdate statBelief)
+                    statBelief.UpdateStatistic(deltaTime);
             }
         }
         #endregion

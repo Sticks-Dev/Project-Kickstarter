@@ -73,23 +73,23 @@ namespace Kickstarter.GOAP
         #endregion
 
         #region Agent Behaviors
-        [SerializeField] private MonoBehaviour[] statBeliefData;
+        [SerializeField] private GameObject statBeliefData;
         [SerializeField] private LocationBeliefData[] locationBeliefData;
         [SerializeField] private SensorBeliefData[] sensorBeliefData;
-        [SerializeField] private AgentActionData[] actionData;
+        [SerializeField] private GameObject actionData;
         [SerializeField] private GoalData[] goalData;
+
+        private IStatBelief[] statBeliefs;
 
         private void SetupBeliefs()
         {
             beliefs = new Dictionary<string, AgentBelief>();
             var factory = new BeliefFactory(this, beliefs);
 
-            foreach (var belief in statBeliefData)
-            {
-                if (belief is not IStatBelief statBelief)
-                    throw new Exception($"{belief.name} must implement IStatBelief");
-                factory.AddStatBelief(statBelief.Name, statBelief.Evaluate);
-            }
+            statBeliefs = statBeliefData.GetComponents<IStatBelief>();
+
+            foreach (var belief in statBeliefs)
+                factory.AddStatBelief(belief.Name, belief.Evaluate);
 
             foreach (var locationBelief in locationBeliefData)
                 factory.AddLocationBelief(locationBelief.Name, locationBelief.Distance, locationBelief.Location);
@@ -105,10 +105,12 @@ namespace Kickstarter.GOAP
         {
             actions = new HashSet<AgentAction>();
 
+            var actionData = this.actionData.GetComponents<AgentAction>();
+
             foreach (var action in actionData)
             {
-                action.AgentAction.Initialize(beliefs);
-                actions.Add(action.AgentAction);
+                action.Initialize(beliefs);
+                actions.Add(action);
             }
         }
 
@@ -127,10 +129,10 @@ namespace Kickstarter.GOAP
 
         private void UpdateStats(float deltaTime)
         {
-            foreach (var belief in statBeliefData)
+            foreach (var belief in statBeliefs)
             {
-                if (belief is IStatUpdate statBelief)
-                    statBelief.UpdateStatistic(deltaTime);
+                if (belief is IStatUpdate updateBelief)
+                    updateBelief.UpdateStatistic(deltaTime);
             }
         }
         #endregion
@@ -183,15 +185,6 @@ namespace Kickstarter.GOAP
 
             public string Name => name;
             public Sensor Sensor => sensor;
-        }
-
-        [Serializable]
-        private struct AgentActionData
-        {
-            [SerializeField] private string actionName;
-            [SerializeField] private AgentAction agentAction;
-
-            public AgentAction AgentAction => agentAction;
         }
 
         [Serializable]

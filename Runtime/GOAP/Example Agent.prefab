@@ -34,6 +34,7 @@ Transform:
   - {fileID: 3796662389458901363}
   - {fileID: 3421528919085657998}
   - {fileID: 7199757915523753845}
+  - {fileID: 3572000684446729137}
   - {fileID: 43153880396353851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,25 +72,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e179be0d83c0b8743a9eede09f2be700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statBeliefData: []
+  statBeliefData: {fileID: 8609399777061766842}
   locationBeliefData: []
   sensorBeliefData:
   - name: Cube In Chase Range
     sensor: {fileID: 8390917916824107452}
   - name: Cube In Attack Range
     sensor: {fileID: 9165215697943511426}
-  actionData:
-  - actionName: Idle
-    agentAction: {fileID: 2570977288250145713}
-    agentActionReferences: []
-  - actionName: Wander
-    agentAction: {fileID: 626392660741094921}
-    agentActionReferences:
-    - {fileID: 1048041913777942314}
-  - actionName: Chase Cube
-    agentAction: {fileID: 5002469436932826509}
-    agentActionReferences:
-    - {fileID: 1048041913777942314}
+  actionData: {fileID: 3201752405769454165}
   goalData:
   - name: Idle
     priority: 1
@@ -431,3 +421,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8609399777061766842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3572000684446729137}
+  m_Layer: 0
+  m_Name: Beliefs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3572000684446729137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8609399777061766842}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2075539394991250100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

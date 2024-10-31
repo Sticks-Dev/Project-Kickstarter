@@ -4,7 +4,7 @@ using Kickstarter.Extensions;
 
 namespace Kickstarter.GOAP
 {
-    [RequireComponent(typeof(SphereCollider))]
+    [RequireComponent(typeof(CircleCollider2D))]
     public class Sensor2D : MonoBehaviour, ISensor
     {
         [SerializeField] float detectionRadius = 5f;

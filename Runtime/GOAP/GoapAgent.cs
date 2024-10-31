@@ -42,7 +42,7 @@ namespace Kickstarter.GOAP
                     currentGoal = actionPlan.AgentGoal;
                     currentAction = actionPlan.Actions.Pop();
                     if (currentAction.Preconditions.All(b => b.Evaluate()))
-                        currentAction.Start();
+                        currentAction.StartAction();
                     else
                     {
                         currentAction = null;
@@ -59,7 +59,7 @@ namespace Kickstarter.GOAP
 
                 if (currentAction.IsComplete())
                 {
-                    currentAction.Stop();
+                    currentAction.StopAction();
                     currentAction = null;
 
                     if (actionPlan.Actions.Count == 0)

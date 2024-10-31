@@ -34,6 +34,7 @@ Transform:
   - {fileID: 3796662389458901363}
   - {fileID: 3421528919085657998}
   - {fileID: 7199757915523753845}
+  - {fileID: 43153880396353851}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &1048041913777942314
@@ -79,14 +80,14 @@ MonoBehaviour:
     sensor: {fileID: 9165215697943511426}
   actionData:
   - actionName: Idle
-    agentAction: {fileID: 11400000, guid: 220c5d52983be5f4bbbb36c5ad3af4ce, type: 2}
+    agentAction: {fileID: 2570977288250145713}
     agentActionReferences: []
   - actionName: Wander
-    agentAction: {fileID: 11400000, guid: 457daa4b20f404c43ad56ad981971c88, type: 2}
+    agentAction: {fileID: 626392660741094921}
     agentActionReferences:
     - {fileID: 1048041913777942314}
   - actionName: Chase Cube
-    agentAction: {fileID: 11400000, guid: 72c822c0e42f1a349b2a3ac612ce8b7b, type: 2}
+    agentAction: {fileID: 5002469436932826509}
     agentActionReferences:
     - {fileID: 1048041913777942314}
   goalData:
@@ -99,6 +100,92 @@ MonoBehaviour:
   - name: Seek and Destroy
     priority: 5
     desiredEffect: Cube In Attack Range
+--- !u!1 &3201752405769454165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43153880396353851}
+  - component: {fileID: 2570977288250145713}
+  - component: {fileID: 626392660741094921}
+  - component: {fileID: 5002469436932826509}
+  m_Layer: 0
+  m_Name: Actions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &43153880396353851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201752405769454165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2075539394991250100}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2570977288250145713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201752405769454165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac34af3fd5bf9534fb6a7ca548a3dc9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
+  preconditions: []
+  effects:
+  - Agent Idle
+  duration: 3
+--- !u!114 &626392660741094921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201752405769454165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1c083db88477f4f8499819af99d5fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
+  preconditions: []
+  effects:
+  - Agent Moving
+  wanderRadius: 10
+--- !u!114 &5002469436932826509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3201752405769454165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dded235199d163340a7d0f6270866e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 0
+  preconditions:
+  - Cube In Chase Range
+  effects:
+  - Cube In Attack Range
+  sensorBeliefName: Cube In Chase Range
 --- !u!1 &4684282922973494073
 GameObject:
   m_ObjectHideFlags: 0

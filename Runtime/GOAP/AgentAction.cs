@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Kickstarter.GOAP
 {
-    public abstract class AgentAction : ScriptableObject
+    public abstract class AgentAction : MonoBehaviour
     {
         [SerializeField] private float cost;
         [SerializeField] private string[] preconditions;
@@ -29,7 +29,7 @@ namespace Kickstarter.GOAP
                 effect.Evaluate();
         }
 
-        public virtual void Start()
+        public virtual void StartAction()
         {
 
         }
@@ -37,7 +37,7 @@ namespace Kickstarter.GOAP
         {
 
         }
-        public virtual void Stop()
+        public virtual void StopAction()
         {
 
         }

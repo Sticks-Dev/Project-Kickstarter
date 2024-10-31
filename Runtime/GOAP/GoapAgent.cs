@@ -107,7 +107,7 @@ namespace Kickstarter.GOAP
 
             foreach (var action in actionData)
             {
-                action.AgentAction.Initialize(beliefs, action.AgentActionReferences);
+                action.AgentAction.Initialize(beliefs);
                 actions.Add(action.AgentAction);
             }
         }
@@ -190,10 +190,8 @@ namespace Kickstarter.GOAP
         {
             [SerializeField] private string actionName;
             [SerializeField] private AgentAction agentAction;
-            [SerializeField] private MonoBehaviour[] agentActionReferences;
 
             public AgentAction AgentAction => agentAction;
-            public MonoBehaviour[] AgentActionReferences => agentActionReferences;
         }
 
         [Serializable]

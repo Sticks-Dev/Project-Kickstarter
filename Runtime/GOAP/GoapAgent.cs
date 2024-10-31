@@ -181,10 +181,10 @@ namespace Kickstarter.GOAP
         private struct SensorBeliefData
         {
             [SerializeField] private string name;
-            [SerializeField] private Sensor sensor;
+            [SerializeField] private MonoBehaviour sensor;
 
             public string Name => name;
-            public Sensor Sensor => sensor;
+            public ISensor Sensor => sensor as ISensor;
         }
 
         [Serializable]

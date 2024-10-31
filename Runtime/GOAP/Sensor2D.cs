@@ -4,15 +4,14 @@ using Kickstarter.Extensions;
 
 namespace Kickstarter.GOAP
 {
-
     [RequireComponent(typeof(SphereCollider))]
-    public class Sensor : MonoBehaviour, ISensor
+    public class Sensor2D : MonoBehaviour, ISensor
     {
         [SerializeField] float detectionRadius = 5f;
         [SerializeField] float timerInterval = 1f;
         [SerializeField] private string targetTag = "Player";
 
-        SphereCollider detectionRange;
+        CircleCollider2D detectionRange;
 
         public event Action OnTargetChanged = delegate { };
 
@@ -27,7 +26,7 @@ namespace Kickstarter.GOAP
         #region UnityEvents
         private void Awake()
         {
-            detectionRange = GetComponent<SphereCollider>();
+            detectionRange = GetComponent<CircleCollider2D>();
             detectionRange.isTrigger = true;
             detectionRange.radius = detectionRadius;
         }
@@ -47,14 +46,14 @@ namespace Kickstarter.GOAP
             timer.Tick(Time.deltaTime);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag(targetTag))
                 return;
             UpdateTargetPosition(other.gameObject);
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             if (!other.CompareTag(targetTag))
                 return;

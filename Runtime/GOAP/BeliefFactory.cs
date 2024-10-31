@@ -22,7 +22,7 @@ namespace Kickstarter.GOAP
                 .Build());
         }
 
-        public void AddSensorBelief(string key, Sensor sensor)
+        public void AddSensorBelief(string key, ISensor sensor)
         {
             beliefs.Add(key, new AgentBelief.Builder(key)
                 .WithCondition(() => sensor.IsTargetInRange)

@@ -1,7 +1,7 @@
 {
   "name": "com.averyackman.kickstarter",
   "description": "Includes a robust set of systems to be used across a variety of projects. \n\nInstall the following packages through git url:\ngit+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1",
-  "version": "2.6.8",
+  "version": "2.6.9",
   "displayName": "Project Kickstarter",
   "unity": "2022.3",
   "dependencies": {

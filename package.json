@@ -1,8 +1,8 @@
 {
-  "name": "com.averyackman.kickstarter",
-  "description": "",
+  "name": "com.averyackman.kickstarter.statemachine",
+  "description": "An abstract system from which state machines can inherit",
   "version": "2.6.9",
-  "displayName": "Project Kickstarter",
+  "displayName": "Project Kickstarter Statemachine",
   "unity": "2022.3",
   "dependencies": {},
   "author": {

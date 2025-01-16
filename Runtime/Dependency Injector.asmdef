@@ -1,9 +1,8 @@
 {
-    "name": "Kickstarter",
-    "rootNamespace": "Kickstarter",
+    "name": "Dependency Injector",
+    "rootNamespace": "Dependency Injector",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:caca889fed6088d40b22c2d7e2909c31"
+        "GUID:e16df22e3d7b9ac448196889a46825ef"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

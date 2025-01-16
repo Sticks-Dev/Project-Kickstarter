@@ -6,7 +6,7 @@
   "unity": "2022.3",
   "dependencies": 
   {
-    "com.averyackman.kickstarter.singleton": "https://github.com/Sticks-Dev/Project-Kickstarter.git#Singleton"
+     "com.averyackman.kickstarter.singleton": "https://github.com/Sticks-Dev/Project-Kickstarter.git#v1.0.0"
   },
   "author": {
     "name": "Avery Ackman",

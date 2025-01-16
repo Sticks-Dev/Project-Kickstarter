@@ -1,8 +1,8 @@
 {
-  "name": "com.averyackman.kickstarter",
-  "description": "Includes a robust set of systems to be used across a variety of projects. \n\nInstall the following packages through git url:\ngit+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1",
+  "name": "com.averyackman.kickstarter.eventmanagement",
+  "description": "An event manager capable of sending out events to all objects which have registered to the matching argument type",
   "version": "2.6.9",
-  "displayName": "Project Kickstarter",
+  "displayName": "Project Kickstarter Event Management",
   "unity": "2022.3",
   "dependencies": {
     "com.unity.inputsystem": "1.7.0"
@@ -10,6 +10,6 @@
   "author": {
     "name": "Avery Ackman",
     "email": "ackmanld@gmail.com",
-    "url": "https://lucasackman.com"
+    "url": "https://www.averyackman.dev"
   }
 }

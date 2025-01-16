@@ -1,6 +1,6 @@
 {
   "name": "com.averyackman.kickstarter_bootstrapper",
-  "description": "A bootstrapping tool with which a set of scenes can be loaded in a desired order. \n\nInstall the following package through git url:\ngit+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1\ngit+https://github.com/Sticks-Dev/Project-Kickstarter.git#Singleton\ngit+https://github.com/Sticks-Dev/Project-Kickstarter.git#Dependency-Injection",
+  "description": "A bootstrapping tool with which a set of scenes can be loaded in a desired order. \n\nInstall the following package through git url:\ngit+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1\ngit+https://github.com/Sticks-Dev/Project-Kickstarter.git#Singleton\ngit+https://github.com/Sticks-Dev/Project-Kickstarter.git#Dependency-Injector",
   "version": "2.6.9",
   "displayName": "Project Kickstarter Bootstrapper",
   "unity": "2022.3",

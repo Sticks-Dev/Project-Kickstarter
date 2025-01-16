@@ -3,7 +3,8 @@
     "rootNamespace": "Bootstrapper",
     "references": [
         "GUID:caca889fed6088d40b22c2d7e2909c31",
-        "GUID:e16df22e3d7b9ac448196889a46825ef"
+        "GUID:e16df22e3d7b9ac448196889a46825ef",
+        "GUID:1c2746327bfbe1441b694f6cc47b1b80"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

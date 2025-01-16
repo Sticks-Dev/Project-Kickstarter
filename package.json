@@ -4,9 +4,7 @@
   "version": "2.6.9",
   "displayName": "Project Kickstarter Dependency Injector",
   "unity": "2022.3",
-  "dependencies": {
-    "com.unity.inputsystem": "1.7.0"
-  },
+  "dependencies": {},
   "author": {
     "name": "Avery Ackman",
     "email": "ackmanld@gmail.com",

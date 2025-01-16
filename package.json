@@ -1,5 +1,5 @@
 {
-  "name": "com.averyackman.kickstarter.Dependency_Injector",
+  "name": "com.averyackman.kickstarter.dependencyinjector",
   "description": "A system which which dependencies can be injected instead of each dependency needing to be found during runtime",
   "version": "2.6.9",
   "displayName": "Project Kickstarter Dependency Injector",

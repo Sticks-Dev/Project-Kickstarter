@@ -1,0 +1,13 @@
+{
+  "name": "com.averyackman.kickstarter",
+  "description": "",
+  "version": "2.6.9",
+  "displayName": "Project Kickstarter",
+  "unity": "2022.3",
+  "dependencies": {},
+  "author": {
+    "name": "Avery Ackman",
+    "email": "ackmanld@gmail.com",
+    "url": "https://www.averyackman.dev"
+  }
+}

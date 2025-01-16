@@ -1,6 +1,6 @@
 {
   "name": "com.averyackman.kickstarter.dependencyinjector",
-  "description": "A system which which dependencies can be injected instead of each dependency needing to be found during runtime",
+  "description": "A system which which dependencies can be injected instead of each dependency needing to be found during runtime. \n\n Required Dependencies: \n https://github.com/Sticks-Dev/Project-Kickstarter.git#Singleton",
   "version": "2.6.9",
   "displayName": "Project Kickstarter Dependency Injector",
   "unity": "2022.3",

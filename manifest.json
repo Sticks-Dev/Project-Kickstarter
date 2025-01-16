@@ -1,9 +1,0 @@
-{
-  "name": "com.averyackman.kickstarter",
-  "version": "1.0.0",
-  "displayName": "kickstarter",
-  "description": "kickstart projects with reusable code",
-  "dependencies": {
-    "com.averyackman.kickstarter.singleton": "https://github.com/Sticks-Dev/Project-Kickstarter.git#Singleton"
-  }
-}

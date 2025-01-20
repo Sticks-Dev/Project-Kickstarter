@@ -1,7 +1,7 @@
 {
   "name": "com.averyackman.kickstarter",
-  "description": "",
-  "version": "2.6.9",
+  "description": "Contains Editor Tools\n\nAdditional Tools can be found at https://github.com/Sticks-Dev/Project-Kickstarter.git",
+  "version": "1.0.0",
   "displayName": "Project Kickstarter",
   "unity": "2022.3",
   "dependencies": {},

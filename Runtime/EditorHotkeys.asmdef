@@ -1,6 +1,6 @@
 {
-    "name": "Kickstarter",
-    "rootNamespace": "Kickstarter",
+    "name": "Editor Hotkeys",
+    "rootNamespace": "Editor Hotkeys",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

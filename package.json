@@ -2,7 +2,7 @@
   "name": "com.averyackman.kickstarter",
   "description": "Contains Editor Hotkeys",
   "version": "1.0.0",
-  "displayName": "Project Kickstarter",
+  "displayName": "Project Kickstarter Editor Hotkeys",
   "unity": "2022.3",
   "dependencies": {},
   "author": {

@@ -103,7 +103,7 @@ namespace Kickstarter
             // Define the basic class template
             string scriptTemplate =
                     $"using System;\n" +
-                    $"using {rootNamespace};" +
+                    $"using {rootNamespace};\n" +
                     $"using UnityEngine.InputSystem;\n" +
                     $"using static {rootNamespace}.InputActions;\n" +
                     $"\n" +

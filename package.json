@@ -1,7 +1,7 @@
 {
   "name": "com.averyackman.kickstarter_singleton",
   "description": "Contains a set of base classes useful to use for any singleton classes",
-  "version": "2.6.9",
+  "version": "1.0.0",
   "displayName": "Project Kickstarter Singleton",
   "unity": "2022.3",
   "dependencies": {},

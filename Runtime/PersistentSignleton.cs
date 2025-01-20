@@ -6,11 +6,14 @@ namespace Kickstarter.Singleton
     {
         protected override void Awake()
         {
-            base.Awake();
             if (instance == null)
                 DontDestroyOnLoad(gameObject);
             else
+            {
                 Destroy(gameObject);
+                return;
+            }
+            base.Awake();
         }
     }
 }

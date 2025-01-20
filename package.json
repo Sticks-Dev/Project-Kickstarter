@@ -1,8 +1,8 @@
 {
-  "name": "com.averyackman.kickstarter",
-  "description": "Contains Editor Tools\n\nAdditional Tools can be found at https://github.com/Sticks-Dev/Project-Kickstarter.git",
+  "name": "com.averyackman.kickstarter.inputgenerator",
+  "description": "Create Classes to Automatically Register according to an ActionMap on an InputActionAsset",
   "version": "1.0.0",
-  "displayName": "Project Kickstarter",
+  "displayName": "Project Kickstarter Input Generator",
   "unity": "2022.3",
   "dependencies": {},
   "author": {

@@ -13,6 +13,7 @@ namespace Kickstarter
         private InputActionAsset inputActionAsset;
         private string[] actionMapNames = new string[0];
         private int selectedActionMapIndex = 0;
+        private string classNamespace = "TEMP";
         private string actionMapName = "TEMP";
 
         [MenuItem("Tools/Kickstarter/Input ActionMap Generator")]
@@ -37,6 +38,10 @@ namespace Kickstarter
                 GUILayout.Label("Select an InputActionAsset to begin.", EditorStyles.helpBox);
                 return;
             }
+
+            string @namespace = EditorGUILayout.TextField(label: "InputActions Namespace", classNamespace);
+            if (@namespace != classNamespace)
+                classNamespace = @namespace;
 
             int newSelectedActionMapIndex = EditorGUILayout.Popup("Action Map", selectedActionMapIndex, actionMapNames);
 
@@ -102,10 +107,18 @@ namespace Kickstarter
 
             // Define the basic class template
             string scriptTemplate =
+                    $"using {rootNamespace};\n";
+            if (rootNamespace == string.Empty)
+                scriptTemplate = string.Empty;
+            if (classNamespace != string.Empty)
+                scriptTemplate += $"using {classNamespace}.InputActions\n";
+            else
+                scriptTemplate +=
+                    $"using static InputActions;\n";
+            scriptTemplate +=
                     $"using System;\n" +
-                    $"using {rootNamespace};\n" +
+                    $"using UnityEngine;\n" +
                     $"using UnityEngine.InputSystem;\n" +
-                    $"using static {rootNamespace}.InputActions;\n" +
                     $"\n" +
                     $"namespace Kickstarter\n" +
                     $"{{\n" +
@@ -162,7 +175,7 @@ namespace Kickstarter
                     $"        public event Action On{action.name.Replace(" ", "")} = delegate {{ }};";
             }
 
-            Type inputType = GetActionReturnType(action);
+            string inputType = GetActionReturnType(action);
             if (inputType == null)
                 throw new Exception($"Unknown control type for action '{action.name.Replace(" ", "")}'");
 
@@ -208,7 +221,7 @@ namespace Kickstarter
             $"        }}\n";
         }
 
-        private Type GetActionReturnType(InputAction action)
+        private string GetActionReturnType(InputAction action)
         {
             foreach (var binding in action.bindings)
             {
@@ -216,9 +229,9 @@ namespace Kickstarter
                 {
                     return binding.path switch
                     {
-                        "Dpad" => typeof(Vector2),
-                        "2DVector" => typeof(Vector2),
-                        "3DVector" => typeof(Vector3),
+                        "Dpad" => "Vector2",
+                        "2DVector" => "Vector2",
+                        "3DVector" => "Vector3",
                         _ => null
                     };
                 }
@@ -231,25 +244,25 @@ namespace Kickstarter
             InputControl control = action.controls[0];
 
             if (control is Vector2Control)
-                return typeof(Vector2);
+                return "Vector2";
             if (control is Vector3Control)
-                return typeof(Vector3);
+                return "Vector3";
             if (control is AxisControl)
-                return typeof(float);
+                return "float";
             if (control is ButtonControl)
-                return typeof(bool);
+                return "bool";
             if (control is KeyControl)
-                return typeof(bool);
+                return "bool";
             if (control is QuaternionControl)
-                return typeof(Quaternion);
+                return "Quaternion";
             if (control is IntegerControl)
-                return typeof(int);
+                return "int";
             if (control is StickControl)
-                return typeof(Vector2);
+                return "Vector2";
             if (control is DpadControl)
-                return typeof(Vector2);
+                return "Vector2";
             if (control is TouchControl)
-                return typeof(Vector2);
+                return "Vector2";
 
             return null; // All controls should be covered, should never return null
         }

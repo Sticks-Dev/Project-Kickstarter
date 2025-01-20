@@ -98,11 +98,13 @@ namespace Kickstarter
             string eventVariablesString = string.Join("\n", eventVariables);
             string interfaceFunctionsString = string.Join("\n", interfaceFunctions);
 
+            string rootNamespace = EditorSettings.projectGenerationRootNamespace;
+
             // Define the basic class template
             string scriptTemplate =
                     $"using System;\n" +
                     $"using UnityEngine.InputSystem;\n" +
-                    $"using static Kickstarter.InputActions;" +
+                    $"using static {rootNamespace}.InputActions;\n" +
                     $"\n" +
                     $"namespace Kickstarter\n" +
                     $"{{\n" +
@@ -156,14 +158,14 @@ namespace Kickstarter
             if (type == InputActionType.Button)
             {
                 return
-                    $"        public event Action On{action.name} = delegate {{ }};";
+                    $"        public event Action On{action.name.Replace(" ", "")} = delegate {{ }};";
             }
 
             Type inputType = GetActionReturnType(action);
             if (inputType == null)
                 throw new Exception($"Unknown control type for action '{action.name}'");
 
-            return $"        public event Action<{inputType}> On{action.name} = delegate {{ }};";
+            return $"        public event Action<{inputType}> On{action.name.Replace(" ", "")} = delegate {{ }};";
         }
 
         private string[] CreateInterfaceFunctions(InputAction[] actions)
@@ -184,7 +186,7 @@ namespace Kickstarter
             if (type == InputActionType.Button)
             {
                 return
-                    $"        void I{actionMapName}Actions.On{action.name}(InputAction.CallbackContext context)\n" +
+                    $"        void I{actionMapName}Actions.On{action.name.Replace(" ", "")}(InputAction.CallbackContext context)\n" +
                     $"        {{\n" +
                     $"            if (!context.performed)\n" +
                     $"                return;\n" +
@@ -194,10 +196,10 @@ namespace Kickstarter
 
             string inputType = GetActionReturnType(action).ToString();
             if (inputType == "Unknown")
-                throw new Exception($"Unknown control type for action '{action.name}'");
+                throw new Exception($"Unknown control type for action '{action.name.Replace(" ", "")}'");
 
             return
-            $"        void I{actionMapName}Actions.On{action.name}(InputAction.CallbackContext context)\n" +
+            $"        void I{actionMapName}Actions.On{action.name.Replace(" ", "")}(InputAction.CallbackContext context)\n" +
             $"        {{\n" +
             $"            if (!context.performed)\n" +
             $"                return;\n" +

@@ -120,7 +120,7 @@ namespace Kickstarter
                     $"            inputs.{actionMapName}.Disable();\n" +
                     $"        }}\n" +
                     $"        \n" +
-                    $"{eventVariablesString}" +
+                    $"{eventVariablesString}\n" +
                     $"        \n" +
                     $"{interfaceFunctionsString}\n" +
                     $"    }}\n" +
@@ -163,7 +163,7 @@ namespace Kickstarter
 
             Type inputType = GetActionReturnType(action);
             if (inputType == null)
-                throw new Exception($"Unknown control type for action '{action.name}'");
+                throw new Exception($"Unknown control type for action '{action.name.Replace(" ", "")}'");
 
             return $"        public event Action<{inputType}> On{action.name.Replace(" ", "")} = delegate {{ }};";
         }
@@ -190,7 +190,7 @@ namespace Kickstarter
                     $"        {{\n" +
                     $"            if (!context.performed)\n" +
                     $"                return;\n" +
-                    $"            On{action.name}?.Invoke();\n" +
+                    $"            On{action.name.Replace(" ", "")}?.Invoke();\n" +
                     $"        }}\n";
             }
 
@@ -203,7 +203,7 @@ namespace Kickstarter
             $"        {{\n" +
             $"            if (!context.performed)\n" +
             $"                return;\n" +
-            $"            On{action.name}?.Invoke(context.ReadValue<{inputType}>());\n" +
+            $"            On{action.name.Replace(" ", "")}?.Invoke(context.ReadValue<{inputType}>());\n" +
             $"        }}\n";
         }
 

@@ -119,9 +119,12 @@ namespace Kickstarter
                     $"using System;\n" +
                     $"using UnityEngine;\n" +
                     $"using UnityEngine.InputSystem;\n" +
-                    $"\n" +
-                    $"namespace Kickstarter\n" +
-                    $"{{\n" +
+                    $"\n";
+            if (rootNamespace != string.Empty)
+                scriptTemplate +=
+                    $"namespace {rootNamespace}\n" +
+                    $"{{\n";
+            scriptTemplate +=
                     $"    public class {className} : InputReceiver, I{actionMapName}Actions\n" + // Add the appropriate interface
                     $"    {{\n" +
                     $"        public override void EnableInputs(bool enable = true)\n" +
@@ -137,8 +140,9 @@ namespace Kickstarter
                     $"{eventVariablesString}\n" +
                     $"        \n" +
                     $"{interfaceFunctionsString}\n" +
-                    $"    }}\n" +
-                    $"}}\n";
+                    $"    }}\n";
+            if (rootNamespace != string.Empty)
+                scriptTemplate += $"}}\n";
 
             // Write the script to the specified file
             File.WriteAllText(fileName, scriptTemplate);

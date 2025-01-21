@@ -111,7 +111,7 @@ namespace Kickstarter
             if (rootNamespace == string.Empty)
                 scriptTemplate = string.Empty;
             if (classNamespace != string.Empty)
-                scriptTemplate += $"using {classNamespace}.InputActions\n";
+                scriptTemplate += $"using static {classNamespace}.InputActions;\n";
             else
                 scriptTemplate +=
                     $"using static InputActions;\n";

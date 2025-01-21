@@ -207,7 +207,7 @@ namespace Kickstarter
                 return
                     $"        void I{actionMapName}Actions.On{action.name.Replace(" ", "")}(InputAction.CallbackContext context)\n" +
                     $"        {{\n" +
-                    $"            if (!context.performed)\n" +
+                    $"            if (context.started)\n" +
                     $"                return;\n" +
                     $"            On{action.name.Replace(" ", "")}?.Invoke();\n" +
                     $"        }}\n";
@@ -220,7 +220,7 @@ namespace Kickstarter
             return
             $"        void I{actionMapName}Actions.On{action.name.Replace(" ", "")}(InputAction.CallbackContext context)\n" +
             $"        {{\n" +
-            $"            if (!context.performed)\n" +
+            $"            if (context.started)\n" +
             $"                return;\n" +
             $"            On{action.name.Replace(" ", "")}?.Invoke(context.ReadValue<{inputType}>());\n" +
             $"        }}\n";

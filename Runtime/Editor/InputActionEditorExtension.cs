@@ -129,6 +129,7 @@ namespace Kickstarter
                     $"    {{\n" +
                     $"        public override void EnableInputs(bool enable = true)\n" +
                     $"        {{\n" +
+                    $"            inputs.{actionMapName}.SetCallbacks(this);" +
                     $"            if (enable)\n" +
                     $"            {{\n" +
                     $"                inputs.{actionMapName}.Enable();\n" +

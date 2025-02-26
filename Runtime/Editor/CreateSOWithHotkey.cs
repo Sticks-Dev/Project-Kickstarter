@@ -1,4 +1,6 @@
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
 
 namespace Kickstarter
@@ -40,3 +42,4 @@ namespace Kickstarter
         }
     }
 }
+#endif

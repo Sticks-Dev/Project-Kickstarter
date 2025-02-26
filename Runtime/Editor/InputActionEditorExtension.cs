@@ -1,11 +1,12 @@
 using System;
 using System.IO;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
+#if UNITY_EDITOR
+using UnityEditor;
 namespace Kickstarter
 {
     public class InputActionEditorExtension : EditorWindow
@@ -273,3 +274,4 @@ namespace Kickstarter
         }
     }
 }
+#endif

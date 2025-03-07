@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.Controls;
 
 #if UNITY_EDITOR
 using UnityEditor;
-namespace Kickstarter
+namespace Kickstarter.InputGenerator
 {
     public class InputActionEditorExtension : EditorWindow
     {

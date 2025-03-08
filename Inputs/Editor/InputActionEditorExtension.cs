@@ -118,15 +118,16 @@ namespace Kickstarter.InputGenerator
                     $"using System;\n" +
                     $"using UnityEngine;\n" +
                     $"using UnityEngine.InputSystem;\n" +
+                    $"using Kickstarter.InputGenerator;\n" +
                     $"\n";
 
             if (rootNamespace != string.Empty)
                 scriptTemplate +=
-                    $"namespace {rootNamespace}\n";
+                    $"namespace {rootNamespace}\n" +
+                    $"{{\n";
 
             // Add primary content to generator
             scriptTemplate +=
-                    $"{{\n" + 
                     $"    public class {className} : InputReceiver, I{actionMapName}Actions\n" + // Add the appropriate interface
                     $"    {{\n" +
                     $"        public override bool IsActive => inputs.{actionMapName}.enabled;\n" +
@@ -138,10 +139,10 @@ namespace Kickstarter.InputGenerator
                     $"            inputs.{actionMapName}.SetCallbacks(this);\n" +
                     $"            inputs.{actionMapName}.Disable();\n" +
                     $"            this.inputs = inputs;\n" +
-                    $"        }}" +
+                    $"        }}\n" +
+                    $"        \n" +
                     $"        public override void EnableInputs(bool enable = true)\n" +
                     $"        {{\n" +
-                    $"            inputs.{actionMapName}.SetCallbacks(this);\n" +
                     $"            if (enable)\n" +
                     $"            {{\n" +
                     $"                inputs.{actionMapName}.Enable();\n" +

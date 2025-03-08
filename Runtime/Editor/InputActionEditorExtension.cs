@@ -106,31 +106,42 @@ namespace Kickstarter.InputGenerator
 
             string rootNamespace = EditorSettings.projectGenerationRootNamespace;
 
-            // Define the basic class template
-            string scriptTemplate =
-                    $"using {rootNamespace};\n";
-            if (rootNamespace == string.Empty)
-                scriptTemplate = string.Empty;
+            // Add Appropriate namespaces to template
+            string scriptTemplate = rootNamespace == string.Empty ? string.Empty : $"using {rootNamespace};\n";
             if (classNamespace != string.Empty)
                 scriptTemplate += $"using static {classNamespace}.InputActions;\n";
             else
                 scriptTemplate +=
                     $"using static InputActions;\n";
+
             scriptTemplate +=
                     $"using System;\n" +
                     $"using UnityEngine;\n" +
                     $"using UnityEngine.InputSystem;\n" +
                     $"\n";
+
             if (rootNamespace != string.Empty)
                 scriptTemplate +=
-                    $"namespace {rootNamespace}\n" +
-                    $"{{\n";
+                    $"namespace {rootNamespace}\n";
+
+            // Add primary content to generator
             scriptTemplate +=
+                    $"{{\n" + 
                     $"    public class {className} : InputReceiver, I{actionMapName}Actions\n" + // Add the appropriate interface
                     $"    {{\n" +
+                    $"        public override bool IsActive => inputs.{actionMapName}.enabled;\n" +
+                    $"        \n" +
+                    $"        public override string ActionMapName => \"{actionMapName}\";\n" +
+                    $"        \n" +
+                    $"        public override void Initialize(InputActions inputs)\n" +
+                    $"        {{\n" +
+                    $"            inputs.{actionMapName}.SetCallbacks(this);\n" +
+                    $"            inputs.{actionMapName}.Disable();\n" +
+                    $"            this.inputs = inputs;\n" +
+                    $"        }}" +
                     $"        public override void EnableInputs(bool enable = true)\n" +
                     $"        {{\n" +
-                    $"            inputs.{actionMapName}.SetCallbacks(this);" +
+                    $"            inputs.{actionMapName}.SetCallbacks(this);\n" +
                     $"            if (enable)\n" +
                     $"            {{\n" +
                     $"                inputs.{actionMapName}.Enable();\n" +

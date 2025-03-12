@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace Kickstarter.Bootstrapper
 {
-    public class Bootstrapper : PersistentSignleton<Bootstrapper>
+    public class Bootstrapper : PersistentSingleton<Bootstrapper>
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Init()

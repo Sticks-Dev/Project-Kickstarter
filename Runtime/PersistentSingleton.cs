@@ -2,7 +2,7 @@
 
 namespace Kickstarter.Singleton
 {
-    public class PersistentSignleton<T> : Singleton<T> where T : Component
+    public class PersistentSingleton<T> : Singleton<T> where T : Component
     {
         protected override void Awake()
         {
@@ -10,7 +10,7 @@ namespace Kickstarter.Singleton
                 DontDestroyOnLoad(gameObject);
             else
             {
-                Destroy(gameObject);
+                DestroyImmediate(gameObject);
                 return;
             }
             base.Awake();
